@@ -27,7 +27,7 @@ Private Sub HandleShape(currentSlide As Slide, currentShape As Shape)
     If currentShape.Type = msoGroup Then
 
         Dim groupNames() As String
-        ReDim Preserve groupNames(1 To currentShape.GroupItems.Count + 1)
+        ReDim Preserve groupNames(currentShape.GroupItems.Count + 1)
 
         Dim groupIndex As Integer
         groupIndex = 0
@@ -56,6 +56,8 @@ Private Sub HandleShape(currentSlide As Slide, currentShape As Shape)
             currentSlide.Shapes.Range(groupNames).Group
 
         End If
+		
+		Erase groupNames
 
     ElseIf currentShape.Type = msoLinkedPicture Then
 
